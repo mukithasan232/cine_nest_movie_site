@@ -88,6 +88,16 @@ export default function RootLayout({
                 <p className="text-zinc-500 text-lg leading-relaxed font-light max-w-sm">
                    Precision architecture for cinematic enthusiasts. Bridging the gap between data and human wonder.
                 </p>
+                
+                {/* Legal and compliance attribution */}
+                <div className="flex items-center gap-4 py-4 px-5 rounded-2xl bg-white/5 border border-white/5 w-max">
+                   <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-green-400 to-blue-500 flex items-center justify-center shrink-0">
+                      <span className="text-[10px] font-black text-white px-2">TMDB</span>
+                   </div>
+                   <p className="text-xs text-zinc-400 max-w-[200px] leading-relaxed">
+                      This product uses the TMDB API but is not endorsed or certified by TMDB.
+                   </p>
+                </div>
                 <div className="text-zinc-600 text-[10px] font-black uppercase tracking-[0.2em] pt-8 border-t border-white/5">
                    &copy; {new Date().getFullYear()} CineNest Global Engine. V.4.8.2.3. All Cinematic Rights Reserved.
                 </div>
