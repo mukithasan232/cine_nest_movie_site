@@ -37,12 +37,16 @@ export async function getTrendingMovies() {
 
 export async function getMovieDetails(id: string) {
   let data = await fetchFromTMDB(`/movie/${id}?append_to_response=credits`);
+  console.log("Movie endpoint response for", id, ":", data?.id ? "success" : data);
   
   // If the movie wasn't found (like for TV Show IDs), fallback to querying TV Show details
   if (!data || data.success === false) {
+    console.log("Falling back to TV endpoint for", id);
     data = await fetchFromTMDB(`/tv/${id}?append_to_response=credits`);
+    console.log("TV endpoint response setup:", data?.id ? "success" : data);
     
     if (!data || data.success === false) {
+      console.log("TV endpoint also failed. Returning null.");
       return null;
     }
     
@@ -52,6 +56,7 @@ export async function getMovieDetails(id: string) {
   }
 
   if (data.results && data.results.length === 0 && !data.id) {
+    console.log("Returned null due to empty results for", id);
     return null;
   }
 
@@ -65,7 +70,11 @@ export async function getMovieDetails(id: string) {
     return found || data.results[0];
   }
   
-  return data.id ? data : null;
+  const finalResult = data.id ? data : null;
+  if (!finalResult) {
+    console.log("Returning null at the end for ID", id);
+  }
+  return finalResult;
 }
 
 export async function getMovieCast(id: string) {

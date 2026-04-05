@@ -21,6 +21,12 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 }
 
 const MovieDetail = async ({ params }: PageProps) => {
+  // Graceful redirect for old static mock links that users might be currently refreshing
+  if (params.id === "1") {
+    const { redirect } = await import("next/navigation");
+    redirect("/movies/157336");
+  }
+
   const [movie, castData] = await Promise.all([
     getMovieDetails(params.id),
     getMovieCast(params.id),
