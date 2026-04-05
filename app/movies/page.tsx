@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import MovieCard from "@/components/MovieCard";
 import AdSlot from "@/components/AdSlot";
-import { getMovies } from "@/lib/tmdb";
+import { fetchFromTMDB } from "@/lib/tmdb";
 import { Film, Search, Filter } from "lucide-react";
 import { motion } from "framer-motion";
 
@@ -15,7 +15,7 @@ const MoviesPage = () => {
     const fetchMovies = async () => {
       setLoading(true);
       try {
-        const data = await getMovies("/movie/popular");
+        const data = await fetchFromTMDB("/movie/popular");
         if (data?.results) setMovies(data.results);
       } catch (error) {
         console.error("Fetch Movies Error:", error);

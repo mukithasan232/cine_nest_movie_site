@@ -36,16 +36,16 @@ const Hero = () => {
             className="text-5xl md:text-7xl font-black mb-6 leading-tight"
           >
             Your Ultimate <br />
-            <span className="text-gradient">Movie Sanctuary</span>
+            <span className="text-cinema-red">Movie Sanctuary</span>
           </motion.h1>
 
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
-            className="text-lg md:text-xl text-white/60 mb-10 max-w-xl mx-auto md:mx-0 leading-relaxed font-light"
+            className="text-lg md:text-xl text-zinc-400 mb-10 max-w-xl mx-auto md:mx-0 leading-relaxed font-light"
           >
-            Discover, track, and explore thousands of movies and TV shows from every genre. CineNest brings the cinema experience directly to your screen with a premium interface.
+            Discover, track, and explore thousands of movies and TV shows from every genre. CoderNest Cinema brings the cinematic experience directly to your screen with a premium interface.
           </motion.p>
 
           <motion.div
@@ -54,7 +54,7 @@ const Hero = () => {
             transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
             className="flex flex-wrap items-center justify-center md:justify-start gap-4"
           >
-            <button className="px-8 py-4 rounded-2xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold transition-all flex items-center gap-3 shadow-xl shadow-indigo-600/20 hover:shadow-indigo-600/40 hover:-translate-y-1">
+            <button className="px-8 py-4 rounded-2xl bg-cinema-red hover:bg-white hover:text-black text-white font-bold transition-all flex items-center gap-3 shadow-xl shadow-cinema-red/20 hover:-translate-y-1">
               <Play className="w-5 h-5 fill-current" />
               Watch Now
             </button>

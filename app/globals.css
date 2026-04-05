@@ -1,87 +1,44 @@
 @import "tailwindcss";
 
+@theme {
+  --color-cinema-red: #e50914;
+}
+
 @layer base {
   :root {
-    --background: 240 10% 3.9%;
+    --background: 240 10% 4%;
     --foreground: 0 0% 98%;
-    --primary: 263.4 70% 50.4%;
-    --primary-foreground: 210 40% 98%;
   }
 
   body {
     background-color: hsl(var(--background));
     color: hsl(var(--foreground));
-    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
-  }
-
-  /* Custom Scrollbar */
-  ::-webkit-scrollbar {
-    width: 10px;
-  }
-
-  ::-webkit-scrollbar-track {
-    background: #050505;
-  }
-
-  ::-webkit-scrollbar-thumb {
-    background: #202020;
-    border-radius: 5px;
-    border: 2px solid #050505;
-  }
-
-  ::-webkit-scrollbar-thumb:hover {
-    background: #252525;
+    font-family: var(--font-inter, system-ui, sans-serif);
+    -webkit-font-smoothing: antialiased;
   }
 }
 
 @layer utilities {
   .glass {
-    @apply bg-black/40 backdrop-blur-xl border border-white/10;
+    @apply bg-zinc-950/40 backdrop-blur-xl border border-white/10;
   }
-
-  .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400;
-  }
-
-  .shadow-premium {
-    box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.7);
-  }
-
-  .hover-glow {
-    @apply transition-all duration-300;
-  }
-
-  .hover-glow:hover {
-    @apply shadow-lg shadow-indigo-500/20 ring-1 ring-white/20;
+  
+  .glass-card {
+    @apply bg-zinc-900/60 backdrop-blur-md border border-white/5;
   }
 }
 
-.animate-float {
-  animation: float 6s ease-in-out infinite;
+/* Scrollbar Styles */
+::-webkit-scrollbar {
+  width: 6px;
 }
-
-@keyframes float {
-  0%,
-  100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-20px);
-  }
+::-webkit-scrollbar-track {
+  background: #000;
 }
-
-.hero-gradient {
-  background: radial-gradient(
-    circle at 50% -20%,
-    rgba(99, 102, 241, 0.15) 0%,
-    rgba(168, 85, 247, 0.05) 40%,
-    transparent 80%
-  );
+::-webkit-scrollbar-thumb {
+  background: #27272a;
+  border-radius: 10px;
 }
-
-/* Ensure images don't stretch and maintain aspect ratio */
-img {
-  max-width: 100%;
-  height: auto;
-  object-fit: cover;
+::-webkit-scrollbar-thumb:hover {
+  background: #e50914;
 }
