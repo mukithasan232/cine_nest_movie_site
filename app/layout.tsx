@@ -96,7 +96,7 @@ export default function RootLayout({
         <Script 
           id="google-analytics"
           async 
-          src="https://www.googletagmanager.com/gtag/js?id=G-YOUR_MEASUREMENT_ID"
+          src="https://www.googletagmanager.com/gtag/js?id=G-WWQ9KGKEGN"
           strategy="afterInteractive"
         />
         <Script
@@ -107,7 +107,7 @@ export default function RootLayout({
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
-              gtag('config', 'G-YOUR_MEASUREMENT_ID', {
+              gtag('config', 'G-WWQ9KGKEGN', {
                 page_path: window.location.pathname,
               });
             `,
