@@ -44,6 +44,8 @@ const MovieDetail = async ({ params }: PageProps) => {
   const releaseYear = movie.release_date?.split("-")[0] || "Unknown";
   const rating = movie.vote_average?.toFixed(1) || "N/A";
   const cast = castData?.cast?.slice(0, 8) || [];
+  const trailer = movie.videos?.results?.find((v: any) => v.type === "Trailer" && v.site === "YouTube");
+  const trailerUrl = trailer ? `https://www.youtube.com/watch?v=${trailer.key}` : `https://www.youtube.com/results?search_query=${encodeURIComponent(movie.title + " trailer")}`;
 
   return (
     <article className="min-h-screen bg-zinc-950 pb-32 overflow-x-hidden selection:bg-cinema-red selection:text-white">
@@ -104,25 +106,25 @@ const MovieDetail = async ({ params }: PageProps) => {
       <section className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-16 -mt-32 relative z-30">
          {/* Sidebar Poster */}
          <aside className="hidden lg:block lg:col-span-4 space-y-10">
-            <div className="relative aspect-[2/3] rounded-[3rem] overflow-hidden shadow-2xl border border-white/10 group cursor-pointer shadow-cinema-red/10">
+            <a href={trailerUrl} target="_blank" rel="noopener noreferrer" className="block relative aspect-[2/3] rounded-[3rem] overflow-hidden shadow-2xl border border-white/10 group cursor-pointer shadow-cinema-red/10">
                <Image src={posterUrl} alt={movie.title || "Movie Poster"} fill className="object-cover transition-transform duration-700 group-hover:scale-105" />
                <div className="absolute inset-0 bg-cinema-red/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                  <div className="p-8 rounded-[2.5rem] bg-white text-black font-black flex items-center gap-4 shadow-2xl">
+                  <div className="p-8 rounded-[2.5rem] bg-white text-black font-black flex items-center gap-4 shadow-2xl hover:scale-105 transition-transform">
                      <Film className="w-7 h-7" />
                      WATCH TRAILER
                   </div>
                </div>
-            </div>
+            </a>
             
             <div className="p-12 rounded-[3.5rem] border border-cinema-red/10 bg-cinema-red/5 backdrop-blur-3xl space-y-10">
                <h3 className="text-2xl font-black text-white tracking-tighter">Availability Status</h3>
                <p className="text-zinc-500 text-sm leading-relaxed font-light">
                   Seamlessly explore details and reviews for this cinematic title on CoderNest Cinema Global Hub.
                </p>
-               <button className="w-full py-6 rounded-2xl bg-cinema-red hover:bg-neutral-100 hover:text-black text-white font-black transition-all shadow-2xl shadow-cinema-red/30 flex items-center justify-center gap-4">
+               <a href={trailerUrl} target="_blank" rel="noopener noreferrer" className="w-full py-6 rounded-2xl bg-cinema-red hover:bg-neutral-100 hover:text-black text-white font-black transition-all shadow-2xl shadow-cinema-red/30 flex items-center justify-center gap-4">
                   <Play className="w-6 h-6 fill-current" />
-                  EXPLORE DETAILS
-               </button>
+                  PLAY TRAILER
+               </a>
             </div>
          </aside>
 

@@ -36,13 +36,13 @@ export async function getTrendingMovies() {
 }
 
 export async function getMovieDetails(id: string) {
-  let data = await fetchFromTMDB(`/movie/${id}?append_to_response=credits`);
+  let data = await fetchFromTMDB(`/movie/${id}?append_to_response=credits,videos`);
   console.log("Movie endpoint response for", id, ":", data?.id ? "success" : data);
   
   // If the movie wasn't found (like for TV Show IDs), fallback to querying TV Show details
   if (!data || data.success === false) {
     console.log("Falling back to TV endpoint for", id);
-    data = await fetchFromTMDB(`/tv/${id}?append_to_response=credits`);
+    data = await fetchFromTMDB(`/tv/${id}?append_to_response=credits,videos`);
     console.log("TV endpoint response setup:", data?.id ? "success" : data);
     
     if (!data || data.success === false) {
