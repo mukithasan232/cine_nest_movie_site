@@ -9,13 +9,15 @@ interface AdSlotProps {
 }
 
 const AdSlot = ({ label = "Space" }: AdSlotProps) => {
+  const adLoaded = React.useRef(false);
+
   useEffect(() => {
+    if (adLoaded.current) return;
+    adLoaded.current = true;
+
     try {
       const adsbygoogle = (window as any).adsbygoogle || [];
-      // Only push if the ins block is empty to prevent duplicates
-      if (document.querySelectorAll('.adsbygoogle').length > 0) {
-        adsbygoogle.push({});
-      }
+      adsbygoogle.push({});
     } catch (err) {
       console.error("Google AdSense payload error:", err);
     }
