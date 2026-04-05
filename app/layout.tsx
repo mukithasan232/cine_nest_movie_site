@@ -61,6 +61,20 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <head>
+        {/* Google Tag Manager */}
+        <Script
+          id="gtm-script"
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+              new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+              j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+              'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+              })(window,document,'script','dataLayer','GTM-P6C7SJGC');
+            `,
+          }}
+        />
         <meta name="google-adsense-account" content="ca-pub-4590020337376910" />
         <Script
           id="google-adsense"
@@ -101,6 +115,16 @@ export default function RootLayout({
         />
       </head>
       <body className="bg-zinc-950 text-zinc-50 font-sans min-h-screen selection:bg-indigo-500/30 selection:text-indigo-200">
+        {/* Google Tag Manager (noscript) */}
+        <noscript>
+          <iframe 
+            src="https://www.googletagmanager.com/ns.html?id=GTM-P6C7SJGC"
+            height="0" 
+            width="0" 
+            style={{ display: "none", visibility: "hidden" }}
+          />
+        </noscript>
+        
         {/* AMP Auto Ads Renderer */}
         <div dangerouslySetInnerHTML={{ __html: `<amp-auto-ads type="adsense" data-ad-client="ca-pub-4590020337376910"></amp-auto-ads>` }} />
         
