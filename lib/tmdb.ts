@@ -1,42 +1,11 @@
 const API_KEY = process.env.NEXT_PUBLIC_TMDB_API_KEY;
 const BASE_URL = "https://api.themoviedb.org/3";
 
-// Premium Mock Data for Fail-safe operation
-const MOCK_DATA = [
-  {
-    id: 1,
-    title: "Oppenheimer",
-    poster_path: "/8Gxv2mYnrpszbpiic3z9QpIBmCc.jpg",
-    backdrop_path: "/fm610mBFrDSR39S6g9pk9M9hdiL.jpg",
-    vote_average: 8.1,
-    release_date: "2023-07-19",
-    overview: "The story of J. Robert Oppenheimer's role in the development of the atomic bomb during World War II.",
-  },
-  {
-    id: 2,
-    title: "Interstellar",
-    poster_path: "/gEU2QniE6E77NI6lCU6MxlSaba7.jpg",
-    backdrop_path: "/8pjWv2hZotIv6psebm9Y9YpCx6q.jpg",
-    vote_average: 8.7,
-    release_date: "2014-11-05",
-    overview: "The adventures of a group of explorers who make use of a newly discovered wormhole to surpass the limitations on human space travel.",
-  },
-  {
-    id: 3,
-    title: "Dune: Part Two",
-    poster_path: "/czembS0RhiERbtNR7nUvN1M8zJ9.jpg",
-    backdrop_path: "/xOMo8NETsO2igUqR90s6vCfvBmr.jpg",
-    vote_average: 8.3,
-    release_date: "2024-02-27",
-    overview: "Paul Atreides unites with Chani and the Fremen while on a warpath of revenge against the conspirators who destroyed his family.",
-  },
-];
 
 export async function fetchFromTMDB(endpoint: string, options: RequestInit = {}) {
-  // If API Key is missing or default, use high-fidelity fallback data
+  // Turn off local mock mode to view real response or api key missing.
   if (!API_KEY || API_KEY.includes("placeholder")) {
-    console.warn(`TMDB API credentials missing. Running in Cinematic Mock Mode for: ${endpoint}`);
-    return { results: MOCK_DATA };
+    console.warn(`TMDB API credentials missing for endpoint: ${endpoint}`);
   }
 
   const url = `${BASE_URL}${endpoint}${endpoint.includes("?") ? "&" : "?"}api_key=${API_KEY}`;
@@ -48,14 +17,17 @@ export async function fetchFromTMDB(endpoint: string, options: RequestInit = {})
     });
 
     if (!res.ok) {
-      console.error(`TMDB API unreachable (${res.status}). Falling back to mock data.`);
-      return { results: MOCK_DATA };
+      if (res.status !== 404) {
+        console.error(`TMDB API error (${res.status}): ${res.statusText} for ${endpoint}`);
+      }
+      // Return a clean error object instead of the array fallback
+      return { success: false, status_code: res.status };
     }
 
     return await res.json();
   } catch (error) {
-    console.error(`TMDB Network Error. Falling back to mock data.`);
-    return { results: MOCK_DATA };
+    console.error(`TMDB Network Error:`, error);
+    return { results: [] };
   }
 }
 
@@ -64,19 +36,45 @@ export async function getTrendingMovies() {
 }
 
 export async function getMovieDetails(id: string) {
-  const data = await fetchFromTMDB(`/movie/${id}?append_to_response=credits`);
+  let data = await fetchFromTMDB(`/movie/${id}?append_to_response=credits`);
   
+  // If the movie wasn't found (like for TV Show IDs), fallback to querying TV Show details
+  if (!data || data.success === false) {
+    data = await fetchFromTMDB(`/tv/${id}?append_to_response=credits`);
+    
+    if (!data || data.success === false) {
+      return null;
+    }
+    
+    // Normalize TV show data into movie schema to reuse the same MovieDetail page
+    data.title = data.name;
+    data.release_date = data.first_air_date;
+  }
+
+  if (data.results && data.results.length === 0 && !data.id) {
+    return null;
+  }
+
   // Handle detailed movie view (not in general results list)
   if (data.results && data.results.length > 0) {
     const found = data.results.find((m: any) => m.id.toString() === id);
+    if (found) {
+       found.title = found.title || found.name;
+       found.release_date = found.release_date || found.first_air_date;
+    }
     return found || data.results[0];
   }
   
-  return data;
+  return data.id ? data : null;
 }
 
 export async function getMovieCast(id: string) {
-  const data = await fetchFromTMDB(`/movie/${id}/credits`);
+  let data = await fetchFromTMDB(`/movie/${id}/credits`);
+  
+  if (!data || data.success === false) {
+    data = await fetchFromTMDB(`/tv/${id}/credits`);
+  }
+  
   return data;
 }
 

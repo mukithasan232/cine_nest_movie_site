@@ -4,6 +4,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Play, Info, TrendingUp, Star } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 const Hero = () => {
   return (
@@ -54,10 +55,12 @@ const Hero = () => {
             transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
             className="flex flex-wrap items-center justify-center md:justify-start gap-4"
           >
-            <button className="px-8 py-4 rounded-2xl bg-cinema-red hover:bg-white hover:text-black text-white font-bold transition-all flex items-center gap-3 shadow-xl shadow-cinema-red/20 hover:-translate-y-1">
-              <Play className="w-5 h-5 fill-current" />
-              Watch Now
-            </button>
+            <Link href="/movies/1">
+               <button className="px-8 py-4 rounded-2xl bg-cinema-red hover:bg-white hover:text-black text-white font-bold transition-all flex items-center gap-3 shadow-xl shadow-cinema-red/20 hover:-translate-y-1">
+                 <Play className="w-5 h-5 fill-current" />
+                 Watch Now
+               </button>
+            </Link>
             <button className="px-8 py-4 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/10 text-white font-bold transition-all flex items-center gap-3 backdrop-blur-md hover:-translate-y-1">
               <Info className="w-5 h-5" />
               Learn More

@@ -27,7 +27,7 @@ const MovieCard = ({ movie }: MovieCardProps) => {
 
         <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
           <div className="glass p-4 rounded-2xl">
-             <h3 className="text-xl font-bold leading-tight mb-2 truncate">{movie.title}</h3>
+             <h3 className="text-xl font-bold leading-tight mb-2 truncate">{movie.title || movie.name}</h3>
              <div className="flex items-center gap-2">
                 <Star className="w-4 h-4 fill-cinema-red text-cinema-red" />
                 <span className="text-sm font-bold">{movie.vote_average?.toFixed(1) || "N/A"}</span>

@@ -43,7 +43,7 @@ const MovieDetail = async ({ params }: PageProps) => {
         <div className="absolute inset-0 z-0">
           <Image
             src={backdropUrl}
-            alt={movie.title}
+            alt={movie.title || "Movie Backdrop"}
             fill
             className="object-cover opacity-30 animate-pulse duration-[10s]"
             priority
@@ -96,7 +96,7 @@ const MovieDetail = async ({ params }: PageProps) => {
          {/* Sidebar Poster */}
          <aside className="hidden lg:block lg:col-span-4 space-y-10">
             <div className="relative aspect-[2/3] rounded-[3rem] overflow-hidden shadow-2xl border border-white/10 group cursor-pointer shadow-cinema-red/10">
-               <Image src={posterUrl} alt={movie.title} fill className="object-cover transition-transform duration-700 group-hover:scale-105" />
+               <Image src={posterUrl} alt={movie.title || "Movie Poster"} fill className="object-cover transition-transform duration-700 group-hover:scale-105" />
                <div className="absolute inset-0 bg-cinema-red/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                   <div className="p-8 rounded-[2.5rem] bg-white text-black font-black flex items-center gap-4 shadow-2xl">
                      <Film className="w-7 h-7" />
@@ -166,7 +166,7 @@ const MovieDetail = async ({ params }: PageProps) => {
                            {actor.profile_path ? (
                               <Image
                                  src={getImageUrl(actor.profile_path, "w185")}
-                                 alt={actor.name}
+                                 alt={actor.name || "Actor Portrait"}
                                  fill
                                  className="object-cover group-hover:scale-110 transition-transform duration-700 grayscale group-hover:grayscale-0"
                               />
