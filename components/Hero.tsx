@@ -76,8 +76,8 @@ const Hero = () => {
         >
           <div className="relative w-full aspect-[2/3] max-w-sm ml-auto rounded-3xl overflow-hidden shadow-2xl border border-white/10 animate-float">
             <Image
-              src="https://image.tmdb.org/t/p/w1280/fm610mBFrDSR39S6g9pk9M9hdiL.jpg"
-              alt="Oppenheimer Movie Backdrop"
+              src="https://image.tmdb.org/t/p/w1280/2ssWTSVklAEc98frZUQhgtGHx7s.jpg"
+              alt="Interstellar Movie Backdrop"
               fill
               className="object-cover transition-transform duration-1000 group-hover:scale-105"
               priority
