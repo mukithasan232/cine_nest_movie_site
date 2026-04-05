@@ -4,6 +4,7 @@ import Script from "next/script";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import AdSlot from "@/components/AdSlot";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -190,9 +191,9 @@ export default function RootLayout({
              </div>
           </div>
 
-          {/* Decor */}
           <div className="absolute top-0 right-0 w-full h-full bg-[radial-gradient(circle_at_70%_0%,rgba(168,85,247,0.05)_0%,transparent_50%)]" />
         </footer>
+        <SpeedInsights />
       </body>
     </html>
   );
