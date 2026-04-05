@@ -55,7 +55,7 @@ const Hero = () => {
             transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
             className="flex flex-wrap items-center justify-center md:justify-start gap-4"
           >
-            <Link href="/movies/1">
+            <Link href="/movies/157336">
                <button className="px-8 py-4 rounded-2xl bg-cinema-red hover:bg-white hover:text-black text-white font-bold transition-all flex items-center gap-3 shadow-xl shadow-cinema-red/20 hover:-translate-y-1">
                  <Play className="w-5 h-5 fill-current" />
                  Watch Now
