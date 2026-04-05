@@ -9,11 +9,12 @@ import Link from "next/link";
 export const revalidate = 3600;
 
 interface PageProps {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const movie = await getMovieDetails(params.id);
+  const { id } = await params;
+  const movie = await getMovieDetails(id);
   return {
     title: `${movie?.title || "Movie Details"} | CoderNest Cinema`,
     description: movie?.overview ? `${movie.overview.substring(0, 155)}...` : "Explore movie details on CoderNest Cinema.",
@@ -21,15 +22,17 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 }
 
 const MovieDetail = async ({ params }: PageProps) => {
+  const { id } = await params;
+
   // Graceful redirect for old static mock links that users might be currently refreshing
-  if (params.id === "1") {
+  if (id === "1") {
     const { redirect } = await import("next/navigation");
     redirect("/movies/157336");
   }
 
   const [movie, castData] = await Promise.all([
-    getMovieDetails(params.id),
-    getMovieCast(params.id),
+    getMovieDetails(id),
+    getMovieCast(id),
   ]);
 
   if (!movie) {
