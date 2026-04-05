@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Outfit } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import AdSlot from "@/components/AdSlot";
@@ -61,21 +62,32 @@ export default function RootLayout({
     >
       <head>
         <meta name="google-adsense-account" content="ca-pub-4590020337376910" />
-        <script
+        <Script
+          id="google-adsense"
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4590020337376910"
           crossOrigin="anonymous"
-        ></script>
+          strategy="afterInteractive"
+        />
         {/* AMP Auto Ads Library */}
-        <script 
+        <Script 
+          id="amp-auto-ads"
           async 
           {...{ "custom-element": "amp-auto-ads" }} 
-          src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
-        </script>
+          src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js"
+          strategy="afterInteractive"
+        />
         
         {/* Global Google Analytics Engine */}
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-YOUR_MEASUREMENT_ID"></script>
-        <script
+        <Script 
+          id="google-analytics"
+          async 
+          src="https://www.googletagmanager.com/gtag/js?id=G-YOUR_MEASUREMENT_ID"
+          strategy="afterInteractive"
+        />
+        <Script
+          id="google-analytics-init"
+          strategy="afterInteractive"
           dangerouslySetInnerHTML={{
             __html: `
               window.dataLayer = window.dataLayer || [];
