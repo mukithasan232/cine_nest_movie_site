@@ -62,8 +62,17 @@ export default function RootLayout({
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4590020337376910"
           crossOrigin="anonymous"
         ></script>
+        {/* AMP Auto Ads Library */}
+        <script 
+          async 
+          {...{ "custom-element": "amp-auto-ads" }} 
+          src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+        </script>
       </head>
       <body className="bg-zinc-950 text-zinc-50 font-sans min-h-screen selection:bg-indigo-500/30 selection:text-indigo-200">
+        {/* AMP Auto Ads Renderer */}
+        <div dangerouslySetInnerHTML={{ __html: `<amp-auto-ads type="adsense" data-ad-client="ca-pub-4590020337376910"></amp-auto-ads>` }} />
+        
         <Navbar />
         
         {/* Main Content */}
