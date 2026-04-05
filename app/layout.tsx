@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Outfit } from "next/font/google";
 import Script from "next/script";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import AdSlot from "@/components/AdSlot";
@@ -193,6 +194,7 @@ export default function RootLayout({
           {/* Decor */}
           <div className="absolute top-0 right-0 w-full h-full bg-[radial-gradient(circle_at_70%_0%,rgba(168,85,247,0.05)_0%,transparent_50%)]" />
         </footer>
+        <SpeedInsights />
       </body>
     </html>
   );
