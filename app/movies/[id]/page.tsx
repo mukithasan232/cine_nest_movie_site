@@ -105,7 +105,7 @@ const MovieDetail = async ({ params }: PageProps) => {
       {/* Detail Content Grid */}
       <section className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-16 -mt-32 relative z-30">
          {/* Sidebar Poster */}
-         <aside className="hidden lg:block lg:col-span-4 space-y-10">
+         <aside className="lg:col-span-4 space-y-10 mb-16 lg:mb-0">
             <a href={trailerUrl} target="_blank" rel="noopener noreferrer" className="block relative aspect-[2/3] rounded-[3rem] overflow-hidden shadow-2xl border border-white/10 group cursor-pointer shadow-cinema-red/10">
                <Image src={posterUrl} alt={movie.title || "Movie Poster"} fill className="object-cover transition-transform duration-700 group-hover:scale-105" />
                <div className="absolute inset-0 bg-cinema-red/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">

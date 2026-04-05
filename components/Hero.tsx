@@ -72,9 +72,9 @@ const Hero = () => {
           initial={{ opacity: 0, scale: 0.9, x: 50 }}
           animate={{ opacity: 1, scale: 1, x: 0 }}
           transition={{ duration: 1, delay: 0.4, ease: "easeOut" }}
-          className="flex-1 relative hidden md:block"
+          className="flex-1 relative w-full mt-10 md:mt-0"
         >
-          <div className="relative w-full aspect-[2/3] max-w-sm ml-auto rounded-3xl overflow-hidden shadow-2xl border border-white/10 animate-float">
+          <div className="relative w-full aspect-[2/3] max-w-[250px] md:max-w-sm mx-auto md:ml-auto rounded-3xl overflow-hidden shadow-2xl border border-white/10 animate-float">
             <Image
               src="https://image.tmdb.org/t/p/w1280/2ssWTSVklAEc98frZUQhgtGHx7s.jpg"
               alt="Interstellar Movie Backdrop"
