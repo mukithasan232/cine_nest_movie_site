@@ -55,6 +55,14 @@ export default function RootLayout({
       className={`${inter.variable} ${outfit.variable} h-full antialiased dark`}
       suppressHydrationWarning
     >
+      <head>
+        <meta name="google-adsense-account" content="ca-pub-4590020337376910" />
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4590020337376910"
+          crossOrigin="anonymous"
+        ></script>
+      </head>
       <body className="bg-zinc-950 text-zinc-50 font-sans min-h-screen selection:bg-indigo-500/30 selection:text-indigo-200">
         <Navbar />
         
