@@ -41,6 +41,10 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "CineNest",
     description: "Discover the magic of cinema in a beautiful dark interface.",
+  },
+  verification: {
+    // Replace with your actual Search Console Verification String tag
+    google: "YOUR_GOOGLE_SEARCH_CONSOLE_ID",
   }
 };
 
@@ -68,6 +72,21 @@ export default function RootLayout({
           {...{ "custom-element": "amp-auto-ads" }} 
           src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
         </script>
+        
+        {/* Global Google Analytics Engine */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-YOUR_MEASUREMENT_ID"></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-YOUR_MEASUREMENT_ID', {
+                page_path: window.location.pathname,
+              });
+            `,
+          }}
+        />
       </head>
       <body className="bg-zinc-950 text-zinc-50 font-sans min-h-screen selection:bg-indigo-500/30 selection:text-indigo-200">
         {/* AMP Auto Ads Renderer */}
