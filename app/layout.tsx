@@ -123,6 +123,8 @@ export default function RootLayout({
             `,
           }}
         />
+        <link rel="preconnect" href="https://image.tmdb.org" />
+        <link rel="dns-prefetch" href="https://image.tmdb.org" />
       </head>
       <body className="bg-zinc-950 text-zinc-50 font-sans min-h-screen selection:bg-indigo-500/30 selection:text-indigo-200">
         {/* Google Tag Manager (noscript) */}
