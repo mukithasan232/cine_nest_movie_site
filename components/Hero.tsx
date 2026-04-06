@@ -71,7 +71,7 @@ const Hero = () => {
         <motion.div
           initial={{ opacity: 0, scale: 0.9, x: 50 }}
           animate={{ opacity: 1, scale: 1, x: 0 }}
-          transition={{ duration: 1, delay: 0.4, ease: "easeOut" }}
+          transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
           className="flex-1 relative w-full mt-10 md:mt-0"
         >
           <div className="relative w-full aspect-[2/3] max-w-[250px] md:max-w-sm mx-auto md:ml-auto rounded-3xl overflow-hidden shadow-2xl border border-white/10 animate-float">
@@ -81,6 +81,7 @@ const Hero = () => {
               fill
               className="object-cover transition-transform duration-1000 group-hover:scale-105"
               priority
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 384px"
             />
             {/* Poster Overlay */}
             <div className="absolute inset-x-0 bottom-0 p-8 bg-gradient-to-t from-black via-black/40 to-transparent">
